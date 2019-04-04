@@ -54,6 +54,7 @@ app.get('/posts', (req, res) => {
           "type": "video",
           "index": 1,
           "category": "landscapes",
+          "categoryId": 3,
           "title": "Richard Nolan",
           "src": "https://images.unsplash.com/photo-1478033394151-c931d5a4bdd6?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&s=3c74d594a86e26c5a319f4e17b36146e",
           "ts": 1554286531
@@ -63,6 +64,7 @@ app.get('/posts', (req, res) => {
           "type": "audio",
           "index": 2,
           "category": "animals",
+          "categoryId": 1,
           "title": "Wexor Tmg",
           "src": "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&s=11ff283143c782980861a442a957da8e",
           "ts": 1554200131
@@ -72,6 +74,7 @@ app.get('/posts', (req, res) => {
           "type": "image",
           "index": 3,
           "category": "cities",
+          "categoryId": 2,
           "title": "Denys Nevozhai",
           "src": "https://images.unsplash.com/photo-1465447142348-e9952c393450?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&s=ea06c0f0700ec469fdcb32e0d4c2928e",
           "ts": 1554113731
@@ -81,6 +84,7 @@ app.get('/posts', (req, res) => {
           "type": "video",
           "index": 4,
           "category": "animals",
+          "categoryId": 1,
           "title": "Sticker Mule",
           "src": "https://images.unsplash.com/photo-1484244233201-29892afe6a2c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&s=14d236624576109b51e85bd5d7ebfbfc",
           "ts": 1553076931
@@ -90,6 +94,7 @@ app.get('/posts', (req, res) => {
           "type": "audio",
           "index": 5,
           "category": "cities",
+          "categoryId": 2,
           "title": "Roman Logov",
           "src": "https://images.unsplash.com/photo-1465414829459-d228b58caf6e?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&s=7a7080fc0699869b1921cb1e7047c5b3",
           "ts": 1552644931

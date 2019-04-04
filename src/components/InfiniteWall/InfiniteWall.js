@@ -29,6 +29,7 @@ class InfiniteWall extends Component {
 
         this.currentType = 'all';
         this.currentCategory = 'all';
+        this.currentCategoryId = '0';
         this.currentTs = Date.now();
 
         this._fetchCategories()
@@ -75,7 +76,7 @@ class InfiniteWall extends Component {
                     </div>
                     <div className="col-md-4">
                         <div className="btn-group" role="group" aria-label="Category controls">
-                            {this.state.categories.map(category => <button key={category.id} type="button" className="btn btn-default btn-filter btn-filter--category" data-filtercategory={category.name.toLowerCase()} onClick={this.filterClick}>{category.name}</button>)}
+                            {this.state.categories.map(category => <button key={category.id} type="button" className="btn btn-default btn-filter btn-filter--category" data-filtercategoryid={category.id} data-filtercategory={category.name.toLowerCase()} onClick={this.filterClick}>{category.name}</button>)}
                         </div>
                     </div>
                 </div>
@@ -92,7 +93,7 @@ class InfiniteWall extends Component {
                         spinner
                         text='Loading...' ></LoadingOverlay>
                     {this.state.posts.map((image, index) => {
-                        return (<div key={index} className="col-lg-3 col-md-4 col-sm-6 media-item" data-type={image.type} data-category={image.category}>
+                        return (<div key={index} className="col-lg-3 col-md-4 col-sm-6 media-item" data-type={image.type} data-category={image.category} data-categoryid={image.categoryId}>
                             <HomepagePost {...image} />
                         </div>)
                     })}
@@ -108,7 +109,7 @@ class InfiniteWall extends Component {
         this.setState({ isLoading: true });
 
         return new Promise((resolve) => {
-            fetch(API + POSTS_ENDPOINT + `?type=${encodeURIComponent(this.currentType)}&category=${encodeURIComponent(this.currentCategory)}&count=${POST_COUNT}&to=${this.currentTs}`)
+            fetch(API + POSTS_ENDPOINT + `?type=${encodeURIComponent(this.currentType)}&category_id=${encodeURIComponent(this.currentCategoryId)}&count=${POST_COUNT}&to=${this.currentTs}`)
                 .then(response => response.json())
                 .then(data => resolve(data));
         });
@@ -158,19 +159,19 @@ class InfiniteWall extends Component {
         target.classList.add("active");
 
         let filterBy;
-        if (type === 'all' && this.currentCategory === 'all') {
+        if (type === 'all' && this.currentCategoryId === '0') {
             filterBy = this.shuffle.ALL_ITEMS;
         } else if (type === 'all') {
             filterBy = (element) => {
-                return this.currentCategory === element.dataset.category;
+                return this.currentCategoryId === element.dataset.categoryid;
             };
-        } else if (this.currentCategory === 'all') {
+        } else if (this.currentCategoryId === '0') {
             filterBy = (element) => {
                 return type === element.dataset.type;
             };
         } else {
             filterBy = (element) => {
-                return type === element.dataset.type && this.currentCategory === element.dataset.category;
+                return type === element.dataset.type && this.currentCategoryId === element.dataset.categoryid;
             };
         }
 
@@ -181,7 +182,7 @@ class InfiniteWall extends Component {
     }
 
     _handleCategoryFilter = (target) => {
-        let category = target.dataset.filtercategory
+        let categoryId = target.dataset.filtercategoryid
         let filterCategoryButtons = document.getElementsByClassName("btn-filter--category");
         for (let i = 0; i < filterCategoryButtons.length; i++) {
             filterCategoryButtons[i].classList.remove("active");
@@ -189,25 +190,25 @@ class InfiniteWall extends Component {
         target.classList.add("active");
 
         let filterBy;
-        if (category === 'all' && this.currentType === 'all') {
+        if (categoryId === '0' && this.currentType === 'all') {
             filterBy = this.shuffle.ALL_ITEMS;
-        } else if (category === 'all') {
+        } else if (categoryId === '0') {
             filterBy = (element) => {
                 return this.currentType === element.dataset.type;
             };
         } else if (this.currentType === 'all') {
             filterBy = (element) => {
-                return category === element.dataset.category;
+                return categoryId === element.dataset.categoryid;
             };
         } else {
             filterBy = (element) => {
-                return category === element.dataset.category && this.currentType === element.dataset.type;
+                return categoryId === element.dataset.categoryid && this.currentType === element.dataset.type;
             };
         }
 
         this.shuffle.filter(filterBy);
         this.shuffle.on(Shuffle.EventType.LAYOUT, () => {
-            this.currentCategory = category;
+            this.currentCategoryId = categoryId;
         });
     }
 
