@@ -1,0 +1,34 @@
+{
+  "name": "entertainment",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "aos": "^3.0.0-beta.6",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "node-sass": "^4.11.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-loading-overlay": "^1.0.1",
+    "react-scripts": "2.1.8",
+    "shufflejs": "^5.2.1",
+    "superagent": "^4.1.0",
+    "wow.js": "^1.2.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "server": "node src/server/server.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
